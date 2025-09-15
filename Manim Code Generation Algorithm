@@ -1,0 +1,17 @@
+FUNCTION GenerateManimCode(script_json):
+    manim_code = ""
+    slides = script_json.slides
+
+    FOR slide IN slides:
+        // Use domain-specific templates for each slide type
+        IF slide.type == "concept_definition":
+            manim_code += GENERATE_CONCEPT_CODE(slide.content)
+        ELSE IF slide.type == "example_visualization":
+            manim_code += GENERATE_EXAMPLE_CODE(slide.content)
+        ELSE IF slide.type == "equation_proof":
+            manim_code += GENERATE_EQUATION_CODE(slide.content)
+        
+        // Add performance optimizations to the code
+        manim_code += ADD_PERFORMANCE_OPTIMIZATIONS(slide.complexity)
+
+    RETURN manim_code
