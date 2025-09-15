@@ -1,0 +1,16 @@
+FUNCTION GenerateAIScript(ranked_content, student_query):
+    // Use prompt engineering to create a tailored prompt for the LLM
+    prompt = CREATE_PROMPT(ranked_content, student_query)
+
+    // Call the OpenAI GPT-4 API
+    generated_script = GPT4_API_CALL(prompt)
+
+    // Validate the content for accuracy and pedagogical flow
+    validated_script = VALIDATE_CONTENT(generated_script, ranked_content)
+
+    // Retry generation if validation fails
+    IF validation_fails(validated_script):
+        generated_script = RETRY_GENERATION_WITH_FEEDBACK(prompt)
+        validated_script = VALIDATE_CONTENT(generated_script, ranked_content)
+
+    RETURN validated_script
